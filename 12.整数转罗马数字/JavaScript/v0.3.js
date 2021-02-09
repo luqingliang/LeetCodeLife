@@ -1,25 +1,17 @@
 /**
- * 提出公共逻辑
+ * 找到暴力破解规律，优化
  * @param {number} num
  * @return {string}
  */
 var intToRoman = function(num) {
     var result = "";
-    
-    var val = num % 10;
-    num -= val;
-    result = trans(val, 10) + result;
-
-    val = num % 100;
-    num -= val;
-    result = trans(val, 100) + result;
-
-    val = num % 1000;
-    num -= val;
-    result = trans(val, 1000) + result;
-
-    val = num % 10000;
-    result = trans(val, 10000) + result;
+    var baseNum = 10;
+    while (num > 0) {
+        var val = num % baseNum;
+        result = trans(val, baseNum) + result;
+        num -= val;
+        baseNum *= 10;
+    }
 
     return result;
 };

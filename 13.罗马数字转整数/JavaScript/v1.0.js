@@ -1,4 +1,5 @@
 /**
+ * 优化空间复杂度
  * @param {string} s
  * @return {number}
  */
@@ -11,23 +12,18 @@ var romanToInt = function(s) {
         ["C", 100],
         ["D", 500],
         ["M", 1000],
-        ["IV", 4],
-        ["IX", 9],
-        ["XL", 40],
-        ["XC", 90],
-        ["CD", 400],
-        ["CM", 900],
     ]);
     var result = 0;
     var index = 0;
-    while (index <= s.length - 1) {
-        if (index < s.length - 1 && map.has(s[index] + s[index + 1])) {
-            result += map.get(s[index] + s[index + 1]);
+    while (index < s.length) {
+        var num = map.get(s[index]);
+        if (index < s.length - 1 && num < map.get(s[index + 1])) {
+            num = map.get(s[index + 1]) - num;
             index += 2;
         } else {
-            result += map.get(s[index]);
-            index++;
+            index ++;
         }
+        result += num;
     }
     return result;
 };

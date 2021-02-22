@@ -1,5 +1,5 @@
 /**
- * 暴力破解
+ * 暴力破解，使用splice删除
  * @param {number[]} nums
  * @return {number}
  */
